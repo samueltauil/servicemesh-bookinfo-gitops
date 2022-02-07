@@ -13,3 +13,9 @@ Now we have to configure the operator, creating a project and configure some per
 ```
 oc apply -k gitops/manifests/bootstrap/openshift-gitops/base
 ```
+
+To deploy the `bookinfo` application we will be using the app of apps pattern:
+
+```
+oc apply -k gitops/manifests/content/demo/argocd/apps/bootstrap/base
+```
