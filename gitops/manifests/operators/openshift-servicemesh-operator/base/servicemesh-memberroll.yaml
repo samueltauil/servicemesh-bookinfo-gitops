@@ -1,8 +1,8 @@
-apiVersion: maistra.io/v1
 kind: ServiceMeshMemberRoll
+apiVersion: maistra.io/v1
 metadata:
   name: default
-  namespace: istio-system
+  namespace: openshift-operators
 spec:
   members:
     - bookinfo

@@ -2,8 +2,13 @@ apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
   name: basic
-  namespace: istio-system
+  namespace: openshift-operators
 spec:
+  tracing:
+    type: Jaeger
+    sampling: 10000
+  policy:
+    type: Istiod
   addons:
     grafana:
       enabled: true
@@ -15,13 +20,6 @@ spec:
       enabled: true
     prometheus:
       enabled: true
-  policy:
-    type: Istiod
-  profiles:
-    - default
   telemetry:
     type: Istiod
-  tracing:
-    sampling: 10000
-    type: Jaeger
   version: v2.1
