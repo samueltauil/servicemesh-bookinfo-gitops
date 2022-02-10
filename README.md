@@ -2,7 +2,8 @@
 
 The idea of this repo is to use gitops to prepare an environment for a demo deploying Service Mesh and
 the `bookinfo` sample application. We consider you have a fresh install of OpenShift.
-
+Beyond just `bookinfo`, this repository automates the installation of Service Mesh, Kiali, Jaeger, Elasticsearch 
+and CodeReady Workspaces.
 
 ## Bootstrap
 
