@@ -4,4 +4,7 @@ kind: Kustomization
 namespace: openshift-operators
 
 resources:
+  - servicemesh-namespace.yaml
   - servicemesh-subscription.yaml
+  - servicemesh-controlplane.yaml
+  - servicemesh-memberroll.yaml
