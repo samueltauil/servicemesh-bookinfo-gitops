@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: openshift-jaeger
+  name: openshift-kiali
   annotations:
     argocd.argoproj.io/compare-options: IgnoreExtraneous
   labels:
@@ -12,7 +12,7 @@ spec:
     server: https://kubernetes.default.svc
   project: cluster-config
   source:
-    path: gitops/manifests/operators/openshift-jaeger-operator/base
+    path: gitops/manifests/operators/openshift-kiali-operator/base
     repoURL: https://github.com/samueltauil/servicemesh-bookinfo-gitops.git
     targetRevision: main
   syncPolicy:
