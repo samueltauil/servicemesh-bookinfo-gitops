@@ -6,6 +6,8 @@ metadata:
   generateName: openshift-workspaces-
   name: openshift-workspaces
   namespace: openshift-workspaces
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   targetNamespaces:
   - openshift-workspaces

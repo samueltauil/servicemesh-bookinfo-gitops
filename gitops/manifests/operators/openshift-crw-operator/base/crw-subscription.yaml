@@ -5,6 +5,8 @@ metadata:
     operators.coreos.com/codeready-workspaces.openshift-workspaces: ""
   name: codeready-workspaces
   namespace: openshift-workspaces
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
 spec:
   channel: latest
   installPlanApproval: Automatic
