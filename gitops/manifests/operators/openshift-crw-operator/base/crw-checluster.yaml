@@ -27,7 +27,6 @@ spec:
     chePostgresDb: dbche
     chePostgresHostName: postgres
     chePostgresPort: '5432'
-    chePostgresSecret: che-postgres-secret
     externalDb: false
     postgresVersion: '13.3'
   devWorkspace:
