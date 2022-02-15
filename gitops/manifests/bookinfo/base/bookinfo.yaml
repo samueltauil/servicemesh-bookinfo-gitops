@@ -1,4 +1,4 @@
-# Copyright 2017 Istio Authors
+# Copyright Istio Authors
 #
 #   Licensed under the Apache License, Version 2.0 (the "License");
 #   you may not use this file except in compliance with the License.
@@ -68,8 +68,6 @@ spec:
       version: v1
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"
       labels:
         app: details
         version: v1
@@ -77,10 +75,12 @@ spec:
       serviceAccountName: bookinfo-details
       containers:
       - name: details
-        image: maistra/examples-bookinfo-details-v1:2.0.0
+        image: docker.io/istio/examples-bookinfo-details-v1:1.16.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
+        securityContext:
+          runAsUser: 1000
 ---
 ##################################################################################################
 # Ratings service
@@ -124,8 +124,6 @@ spec:
       version: v1
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"
       labels:
         app: ratings
         version: v1
@@ -133,10 +131,12 @@ spec:
       serviceAccountName: bookinfo-ratings
       containers:
       - name: ratings
-        image: maistra/examples-bookinfo-ratings-v1:2.0.0
+        image: docker.io/istio/examples-bookinfo-ratings-v1:1.16.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
+        securityContext:
+          runAsUser: 1000
 ---
 ##################################################################################################
 # Reviews service
@@ -180,8 +180,6 @@ spec:
       version: v1
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"
       labels:
         app: reviews
         version: v1
@@ -189,7 +187,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: maistra/examples-bookinfo-reviews-v1:2.0.0
+        image: docker.io/istio/examples-bookinfo-reviews-v1:1.16.2
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -201,6 +199,8 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        securityContext:
+          runAsUser: 1000
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -223,8 +223,6 @@ spec:
       version: v2
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"
       labels:
         app: reviews
         version: v2
@@ -232,7 +230,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: maistra/examples-bookinfo-reviews-v2:2.0.0
+        image: docker.io/istio/examples-bookinfo-reviews-v2:1.16.2
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -244,6 +242,8 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        securityContext:
+          runAsUser: 1000
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -266,8 +266,6 @@ spec:
       version: v3
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"
       labels:
         app: reviews
         version: v3
@@ -275,7 +273,7 @@ spec:
       serviceAccountName: bookinfo-reviews
       containers:
       - name: reviews
-        image: maistra/examples-bookinfo-reviews-v3:2.0.0
+        image: docker.io/istio/examples-bookinfo-reviews-v3:1.16.2
         imagePullPolicy: IfNotPresent
         env:
         - name: LOG_DIR
@@ -287,6 +285,8 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
+        securityContext:
+          runAsUser: 1000
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -335,8 +335,6 @@ spec:
       version: v1
   template:
     metadata:
-      annotations:
-        sidecar.istio.io/inject: "true"
       labels:
         app: productpage
         version: v1
@@ -344,13 +342,15 @@ spec:
       serviceAccountName: bookinfo-productpage
       containers:
       - name: productpage
-        image: maistra/examples-bookinfo-productpage-v1:2.0.0
+        image: docker.io/istio/examples-bookinfo-productpage-v1:1.16.2
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
         volumeMounts:
         - name: tmp
           mountPath: /tmp
+        securityContext:
+          runAsUser: 1000
       volumes:
       - name: tmp
         emptyDir: {}
