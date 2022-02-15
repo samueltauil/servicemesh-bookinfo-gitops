@@ -3,5 +3,6 @@ kind: Namespace
 metadata:
   name: openshift-workspaces
   annotations:
+    argocd.argoproj.io/hook: PreSync 
     argocd.argoproj.io/sync-wave: "1"
 spec: {}

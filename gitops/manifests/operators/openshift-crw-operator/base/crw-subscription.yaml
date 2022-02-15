@@ -6,7 +6,8 @@ metadata:
   name: codeready-workspaces
   namespace: openshift-workspaces
   annotations:
-    argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   channel: latest
   installPlanApproval: Automatic
