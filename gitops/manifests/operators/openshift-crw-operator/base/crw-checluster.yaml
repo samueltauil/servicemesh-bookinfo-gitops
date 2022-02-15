@@ -1,5 +1,5 @@
-kind: CheCluster
 apiVersion: org.eclipse.che/v1
+kind: CheCluster
 metadata:
   name: codeready-workspaces
   namespace: openshift-workspaces
@@ -7,42 +7,59 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
 spec:
   auth:
-    externalIdentityProvider: false
-    identityProviderAdminUserName: ''
-    identityProviderClientId: ''
-    identityProviderPassword: ''
-    identityProviderRealm: ''
-    identityProviderURL: ''
+    identityProviderRealm: codeready
+    updateAdminPassword: false
+    identityProviderIngress: {}
     initialOpenShiftOAuthUser: true
-    oAuthClientName: ''
-    oAuthSecret: ''
+    identityProviderContainerResources:
+      limits: {}
+      request: {}
+    identityProviderClientId: codeready-public
+    identityProviderPostgresSecret: che-identity-postgres-secret
+    identityProviderRoute: {}
+    externalIdentityProvider: false
+    identityProviderSecret: che-identity-secret
+    openShiftoAuth: true
   database:
-    chePostgresDb: ''
-    chePostgresHostName: ''
-    chePostgresPassword: ''
-    chePostgresPort: ''
-    chePostgresUser: ''
+    chePostgresContainerResources:
+      limits: {}
+      request: {}
+    chePostgresDb: dbche
+    chePostgresHostName: postgres
+    chePostgresPort: '5432'
+    chePostgresSecret: che-postgres-secret
     externalDb: false
+    postgresVersion: '13.3'
+  devWorkspace:
+    enable: false
+  imagePuller:
+    enable: false
+    spec: {}
+  k8s: {}
   metrics:
     enable: true
   server:
-    allowUserDefinedWorkspaceNamespaces: false
-    cheClusterRoles: ''
-    cheFlavor: codeready
-    cheWorkspaceClusterRole: ''
-    gitSelfSignedCert: false
-    nonProxyHosts: ''
-    proxyPassword: ''
-    proxyPort: ''
-    proxyURL: ''
-    proxyUser: ''
-    serverExposureStrategy: ''
-    serverTrustStoreConfigMapName: ''
+    cheLogLevel: INFO
+    dashboardIngress: {}
+    externalDevfileRegistry: false
+    pluginRegistryIngress: {}
+    cheServerRoute: {}
+    devfileRegistryIngress: {}
+    selfSignedCert: false
+    cheServerIngress: {}
+    cheDebug: 'false'
     tlsSupport: true
+    dashboardRoute: {}
+    allowUserDefinedWorkspaceNamespaces: false
+    pluginRegistryRoute: {}
+    devfileRegistryRoute: {}
+    externalPluginRegistry: false
     workspaceNamespaceDefault: <username>-codeready
+    serverExposureStrategy: multi-host
+    gitSelfSignedCert: false
+    useInternalClusterSVCNames: false
+    cheFlavor: codeready
   storage:
-    postgresPVCStorageClassName: ''
     preCreateSubPaths: true
     pvcClaimSize: 10Gi
     pvcStrategy: common
-    workspacePVCStorageClassName: ''
