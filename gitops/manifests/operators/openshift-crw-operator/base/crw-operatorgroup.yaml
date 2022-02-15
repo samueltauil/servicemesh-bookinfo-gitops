@@ -3,12 +3,11 @@ kind: OperatorGroup
 metadata:
   annotations:
     olm.providedAPIs: CheBackupServerConfiguration.v1.org.eclipse.che,CheCluster.v1.org.eclipse.che,CheClusterBackup.v1.org.eclipse.che,CheClusterRestore.v1.org.eclipse.che
+    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/sync-wave: "2"
   generateName: openshift-workspaces-
   name: openshift-workspaces
   namespace: openshift-workspaces
-  annotations:
-    argocd.argoproj.io/hook: PreSync
-    argocd.argoproj.io/sync-wave: "2"
 spec:
   targetNamespaces:
   - openshift-workspaces
