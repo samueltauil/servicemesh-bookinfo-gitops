@@ -79,8 +79,6 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
-        securityContext:
-          runAsUser: 1000
 ---
 ##################################################################################################
 # Ratings service
@@ -135,8 +133,6 @@ spec:
         imagePullPolicy: IfNotPresent
         ports:
         - containerPort: 9080
-        securityContext:
-          runAsUser: 1000
 ---
 ##################################################################################################
 # Reviews service
@@ -199,8 +195,6 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
-        securityContext:
-          runAsUser: 1000
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -242,8 +236,6 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
-        securityContext:
-          runAsUser: 1000
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -285,8 +277,6 @@ spec:
           mountPath: /tmp
         - name: wlp-output
           mountPath: /opt/ibm/wlp/output
-        securityContext:
-          runAsUser: 1000
       volumes:
       - name: wlp-output
         emptyDir: {}
@@ -349,8 +339,6 @@ spec:
         volumeMounts:
         - name: tmp
           mountPath: /tmp
-        securityContext:
-          runAsUser: 1000
       volumes:
       - name: tmp
         emptyDir: {}
