@@ -3,6 +3,8 @@ apiVersion: org.eclipse.che/v1
 metadata:
   name: codeready-workspaces
   namespace: openshift-workspaces
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   auth:
     externalIdentityProvider: false

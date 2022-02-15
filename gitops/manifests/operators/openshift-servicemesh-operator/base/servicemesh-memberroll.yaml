@@ -3,6 +3,8 @@ apiVersion: maistra.io/v1
 metadata:
   name: default
   namespace: istio-system
+  annotations:
+    argocd.argoproj.io/sync-wave: "2"
 spec:
   members:
     - bookinfo
