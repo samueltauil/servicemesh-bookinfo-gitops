@@ -8,4 +8,4 @@ oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.1/samples/
 curl -s https://raw.githubusercontent.com/maistra/istio/maistra-2.1/samples/bookinfo/networking/virtual-service-reviews-test-v2.yaml | sed 's/exact: jason/exact: kadu/' | oc apply -f -
 
 # create a fault injection rule to delay traffic coming from the test user kadu
-oc apply -f https://raw.githubusercontent.com/maistra/istio/maistra-2.1/samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml
+curl -s https://raw.githubusercontent.com/maistra/istio/maistra-2.1/samples/bookinfo/networking/virtual-service-ratings-test-delay.yaml | sed 's/exact: jason/exact: kadu/' | oc apply -f -
