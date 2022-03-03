@@ -1,20 +1,13 @@
-apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
+apiVersion: maistra.io/v2
 metadata:
-  name: basic-mtls
+  name: basic
   namespace: istio-system
   annotations:
     argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
   version: v2.1
-  runtime:
-    components:
-      pilot:
-        pod:
-          metadata:
-            labels:
-              mypod: "thisisatest"
   security:
     dataPlane:
       mtls: true
@@ -28,28 +21,21 @@ spec:
         ecdhCurves:
           - CurveP256
           - CurveP384
-  istio:
-    gateways:
-      istio-egressgateway:
-        autoscaleEnabled: false
-      istio-ingressgateway:
-        autoscaleEnabled: false
-        ior_enabled: false
-    mixer:
-      policy:
-        autoscaleEnabled: false
-      telemetry:
-        autoscaleEnabled: false
-    pilot:
-      autoscaleEnabled: false
-      traceSampling: 100
+  tracing:
+    type: Jaeger
+    sampling: 10000
+  policy:
+    type: Istiod
+  telemetry:
+    type: Istiod
+  addons:
+    jaeger:
+      install:
+        storage:
+          type: Memory
+    prometheus:
+      enabled: true
     kiali:
       enabled: true
-    prometheus:
-      enabled: false
     grafana:
       enabled: true
-    tracing:
-      enabled: false
-      jaeger:
-        template: all-in-one
