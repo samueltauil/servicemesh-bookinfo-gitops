@@ -1,41 +1,55 @@
 apiVersion: maistra.io/v2
 kind: ServiceMeshControlPlane
 metadata:
-  name: basic
+  name: basic-mtls
   namespace: istio-system
-  annotations:
-    argocd.argoproj.io/sync-wave: "2"
-    argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
+annotations:
+  argocd.argoproj.io/sync-wave: "2"
+  argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
- security:
-  dataPlane:
-    mtls: true
-  controlPlane:
-    mtls: true
-    tls:
-      minProtocolVersion: TLSv1_2
-      maxProtocolVersion: TLSv1_2
-      cipherSuites:
-        - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
-      ecdhCurves:
-        - CurveP256
-        - CurveP384
-  tracing:
-    type: Jaeger
-    sampling: 10000
-  policy:
-    type: Istiod
-  addons:
-    grafana:
-      enabled: true
-    jaeger:
-      install:
-        storage:
-          type: Memory
+  version: v2.1
+  runtime:
+    components:
+      pilot:
+        pod:
+          metadata:
+            labels:
+              mypod: "thisisatest"
+  security:
+    dataPlane:
+      mtls: true
+    controlPlane:
+      mtls: true
+      tls:
+        minProtocolVersion: TLSv1_2
+        maxProtocolVersion: TLSv1_2
+        cipherSuites:
+          - TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+        ecdhCurves:
+          - CurveP256
+          - CurveP384
+  istio:
+    gateways:
+      istio-egressgateway:
+        autoscaleEnabled: false
+      istio-ingressgateway:
+        autoscaleEnabled: false
+        ior_enabled: false
+    mixer:
+      policy:
+        autoscaleEnabled: false
+      telemetry:
+        autoscaleEnabled: false
+    pilot:
+      autoscaleEnabled: false
+      traceSampling: 100
     kiali:
       enabled: true
     prometheus:
+      enabled: false
+    grafana:
       enabled: true
-  telemetry:
-    type: Istiod
-  version: v2.1
+    tracing:
+      enabled: false
+      jaeger:
+        template: all-in-one
