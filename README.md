@@ -24,3 +24,7 @@ To deploy the `bookinfo` application we will be using the app of apps pattern:
 ```
 oc apply -k gitops/manifests/content/demo/argocd/apps/bootstrap/base
 ```
+
+## Demo 
+
+Within `scripts` you can execute in the order, also there is a script to generate some load so you can test Kiali and Jaeger.
