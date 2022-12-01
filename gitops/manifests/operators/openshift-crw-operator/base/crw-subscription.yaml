@@ -13,4 +13,4 @@ spec:
   name: codeready-workspaces
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-  startingCSV: crwoperator.v2.14.0-0.1643720187.p
+
