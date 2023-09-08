@@ -7,7 +7,7 @@ metadata:
     argocd.argoproj.io/sync-wave: "2"
     argocd.argoproj.io/sync-options: SkipDryRunOnMissingResource=true
 spec:
-  version: v2.2
+  version: v2.4
   security:
     dataPlane:
       mtls: true
