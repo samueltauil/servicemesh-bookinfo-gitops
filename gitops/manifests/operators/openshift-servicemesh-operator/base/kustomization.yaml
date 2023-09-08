@@ -4,4 +4,5 @@ kind: Kustomization
 resources:
   - servicemesh-namespace.yaml
   - servicemesh-subscription.yaml
+  - servicemesh-controlplane.yaml
   - servicemesh-memberroll.yaml
