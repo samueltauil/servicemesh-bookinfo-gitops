@@ -5,12 +5,11 @@ metadata:
     operators.coreos.com/servicemeshoperator.openshift-operators: ""
   name: servicemeshoperator
   namespace: openshift-operators
-  annotations:
-    argocd.argoproj.io/sync-wave: "1"
 spec:
   channel: stable
   installPlanApproval: Automatic
   name: servicemeshoperator
   source: redhat-operators
   sourceNamespace: openshift-marketplace
-#  startingCSV: servicemeshoperator.v2.4.2
+  startingCSV: servicemeshoperator.v2.4.2
+

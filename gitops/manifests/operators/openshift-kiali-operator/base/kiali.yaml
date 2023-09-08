@@ -4,13 +4,17 @@ metadata:
   name: kiali
   namespace: istio-system
 spec:
+  auth:
+    strategy: openshift
   deployment:
     accessible_namespaces:
       - istio-system
       - bookinfo
-    logger:
-      log_level: debug
+    ingress:
+      enabled: true
     namespace: istio-system
-    view_only_mode: false
-  installation_tag: My Kiali
+    pod_labels:
+      sidecar.istio.io/inject: "false"
+  installation_tag: Kiali [istio-system]
   istio_namespace: istio-system
+  version: v1.65
